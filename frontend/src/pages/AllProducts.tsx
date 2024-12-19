@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { pageTypes, productType } from "../types/PageProps"
+import { pageTypes, productType } from "../types/Types"
 import { Link, useNavigate } from "react-router-dom"
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";

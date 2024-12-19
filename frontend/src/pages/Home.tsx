@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { NavLink } from "react-router-dom"
-import { pageTypes } from "../types/PageProps"
+import { pageTypes } from "../types/Types"
 
 const Home: FC<pageTypes> = ({ title }) => {
   return (
