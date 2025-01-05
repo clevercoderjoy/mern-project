@@ -3,7 +3,7 @@ import { connectDB } from "./config/db";
 import dotenv from "dotenv";
 import productRoutes from "./routes/product.route";
 
-dotenv.config({ path: "./backend/.env" });
+dotenv.config({ path: "./.env" });
 const app = express();
 app.use(express.json());
 
