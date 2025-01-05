@@ -8,10 +8,10 @@ import axios from "axios";
 const AllProducts: FC<pageTypes> = ({ title }) => {
   const navigate = useNavigate();
 
-  const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useState<productType[]>([]);
 
   const fetchAllProducts = async () => {
-    const allProducts = await axios.get("/api/products");
+    const allProducts = await axios.get<{ data: productType[] }>("/api/products");
     setProductList(allProducts?.data?.data);
   }
 
@@ -21,14 +21,12 @@ const AllProducts: FC<pageTypes> = ({ title }) => {
 
   const updateProduct = async (productId: string) => {
     const productToEdit = productList.find((product: productType) => product._id === productId);
-    console.log("🚀 ~ file: AllProducts.tsx:25 ~ updateProduct ~ productToEdit:", productToEdit);
     navigate("/products/addOrUpdateProduct", {
       state: {
         title: "Update",
-        productId
+        currentProduct: productToEdit
       }
     });
-    // await axios.put(`/api/products/${productId}`);
   }
 
   useEffect(() => {
@@ -51,8 +49,8 @@ const AllProducts: FC<pageTypes> = ({ title }) => {
                   <span className="text-sm">${product.price}</span>
                 </span>
                 <span className="icons flex gap-2 mt-2 px-2">
-                  <FaRegEdit className="cursor-pointer" onClick={() => updateProduct(product._id)} />
-                  <RiDeleteBinLine className="cursor-pointer" onClick={() => deleteProduct(product._id)} />
+                  <FaRegEdit className="cursor-pointer" onClick={() => product._id && updateProduct(product._id)} />
+                  <RiDeleteBinLine className="cursor-pointer" onClick={() => product._id && deleteProduct(product._id)} />
                 </span>
               </span>
             </li>)

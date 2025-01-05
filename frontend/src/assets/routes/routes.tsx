@@ -2,9 +2,8 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
 import Home from "../../pages/Home";
 import AllProducts from "../../pages/AllProducts";
-import About from "../../pages/About";
 import ProductPage from "../../pages/ProductPage";
-import AddProductForm from "../../components/ProductForm";
+import ProductForm from "../../components/ProductForm";
 
 const routes: RouteObject[] = [
   {
@@ -28,13 +27,9 @@ const routes: RouteObject[] = [
           },
           {
             path: "addOrUpdateProduct",
-            element: <AddProductForm />
+            element: <ProductForm />
           }
         ]
-      },
-      {
-        path: "about",
-        element: <About />
       },
     ],
   }

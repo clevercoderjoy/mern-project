@@ -15,7 +15,6 @@ const Header = () => {
             <NavLink to="/products/addOrUpdateProduct" className="cursor-pointer hover:border-b-4 hover: border-white">Add</NavLink>
             <NavLink to="/" className="cursor-pointer hover:border-b-4 hover: border-white">Home</NavLink>
             <NavLink to="/products" className="cursor-pointer hover:border-b-4 hover: border-white">Products</NavLink>
-            <NavLink to="/about" className="cursor-pointer hover:border-b-4 hover: border-white">About</NavLink>
           </ul>
         </nav>
       </div>
