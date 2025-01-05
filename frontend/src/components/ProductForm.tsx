@@ -18,9 +18,7 @@ const ProductForm: FC = () => {
   })
 
   const onsubmit: SubmitHandler<productType> = async (data) => {
-    console.log(data);
     if (currentProduct) {
-      console.log("Product Updated");
       await axios.put(`/api/products/${currentProduct._id}`, data);
     }
     else {
@@ -32,7 +30,7 @@ const ProductForm: FC = () => {
 
   return (
     <>
-      <h2 className='text-center mt-12 font-bold text-white text-2xl'>{title || "Add"} Product</h2>
+      <h2 className='text-center mt-12 font-bold text-white text-2xl'>{title ?? "Add"} Product</h2>
 
       <form onSubmit={handleSubmit(onsubmit)} className='mt-12 text-white font-bold max-w-[50%] mx-auto border-white border-4 p-4 rounded-md'>
         <div className="name flex flex-col mt-4">
@@ -62,8 +60,9 @@ const ProductForm: FC = () => {
             )
           }
         </div>
-        <div className="name flex flex-col mt-6 mb-4 border-2 p-2 border-white">
-          <button className='outline-none' type="submit">{title || "Add"}</button>
+        <div className="name flex items-center justify-center gap-5 mt-6 mb-4">
+          <button className='outline-none border-2 p-3 rounded border-white' type="submit">{title ?? "Add"}</button>
+          <button className='outline-none border-2 p-3 rounded border-white' onClick={() => navigate(-1)}>Cancel</button>
         </div>
       </form>
     </>
