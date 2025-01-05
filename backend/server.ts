@@ -7,11 +7,11 @@ import cors from "cors";
 dotenv.config({ path: "./.env" });
 const app = express();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 // root
 app.get(
-  "https://mern-project-asso.onrender.com/",
+  "https://mern-project-asso.onrender.com",
   (req: Request, res: Response) => {
     res.send("Server is ready");
   }
