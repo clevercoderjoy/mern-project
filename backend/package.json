@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
+    "postinstall": "npm install -g ts-node",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node server.ts"
+    "start": "npx ts-node server.ts"
   },
   "keywords": [],
   "author": "",
