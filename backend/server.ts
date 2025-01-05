@@ -10,12 +10,9 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:5173" }));
 
 // root
-app.get(
-  "https://mern-project-asso.onrender.com",
-  (req: Request, res: Response) => {
-    res.send("Server is ready");
-  }
-);
+app.get("/", (req: Request, res: Response) => {
+  res.send("Server is ready");
+});
 
 app.use("/api/products", productRoutes);
 
