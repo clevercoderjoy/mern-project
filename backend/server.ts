@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { connectDB } from "./config/db";
 import dotenv from "dotenv";
 import productRoutes from "./routes/product.route";
-import { cors } from "cors";
+import cors from "cors";
 
 dotenv.config({ path: "./.env" });
 const app = express();
