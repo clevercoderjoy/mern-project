@@ -28,6 +28,11 @@ const ProductForm: FC = () => {
     reset();
   }
 
+  const handleCancelClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(-1);
+  }
+
   return (
     <>
       <h2 className='text-center mt-12 font-bold text-white text-2xl'>{title ?? "Add"} Product</h2>
@@ -62,7 +67,7 @@ const ProductForm: FC = () => {
         </div>
         <div className="name flex items-center justify-center gap-5 mt-6 mb-4">
           <button className='outline-none border-2 p-3 rounded border-white' type="submit">{title ?? "Add"}</button>
-          <button className='outline-none border-2 p-3 rounded border-white' onClick={() => navigate(-1)}>Cancel</button>
+          <button className='outline-none border-2 p-3 rounded border-white' onClick={handleCancelClick}>Cancel</button>
         </div>
       </form>
     </>
