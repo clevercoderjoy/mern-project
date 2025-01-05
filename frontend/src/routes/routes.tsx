@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import App from "../../App";
-import Home from "../../pages/Home";
-import AllProducts from "../../pages/AllProducts";
-import ProductPage from "../../pages/ProductPage";
-import ProductForm from "../../components/ProductForm";
+import App from "../App";
+import Home from "../pages/Home";
+import AllProducts from "../pages/AllProducts";
+import ProductPage from "../pages/ProductPage";
+import ProductForm from "../components/ProductForm";
 
 const routes: RouteObject[] = [
   {
