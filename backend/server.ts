@@ -7,9 +7,7 @@ import cors from "cors";
 dotenv.config({ path: "./.env" });
 const app = express();
 app.use(express.json());
-app.use(
-  cors({ origin: "https://clevercoderjoy-first-mern-project.netlify.app/" })
-);
+app.use(cors({ origin: "*" }));
 
 // root
 app.get("/", (req: Request, res: Response) => {
