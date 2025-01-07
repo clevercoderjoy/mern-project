@@ -15,13 +15,17 @@ app.use(
   })
 );
 
+app.get("/.well-known/health", (req: Request, res: Response) => {
+  res.status(200).json({
+    status: "OK",
+    service: "MERN API",
+    time: new Date().toISOString(),
+  });
+});
+
 // root
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is ready");
-});
-
-app.get("/.well-known/health", (req: Request, res: Response) => {
-  res.status(200).json({ status: "OK" });
 });
 
 app.use("/api/products", productRoutes);
@@ -32,6 +36,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server environment: ${process.env.NODE_ENV}`);
-  console.log(`CORS enabled for origin: ${process.env.FRONTEND_URL || '*'}`);
+  console.log(`CORS enabled for origin: ${process.env.FRONTEND_URL || "*"}`);
   console.log("server started at https://mern-project-asso.onrender.com");
 });
