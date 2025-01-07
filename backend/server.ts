@@ -15,12 +15,21 @@ app.use(
   })
 );
 
-app.get("/.well-known/health", (req: Request, res: Response) => {
-  res.status(200).json({
-    status: "OK",
-    service: "MERN API",
-    time: new Date().toISOString(),
-  });
+app.get("/.well-known/health", async (req: Request, res: Response) => {
+  try {
+    // Test database connection
+    await connectDB();
+    res.status(200).json({
+      status: "healthy",
+      message: "Service is running",
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: "unhealthy",
+      message: error.message
+    });
+  }
 });
 
 // root
