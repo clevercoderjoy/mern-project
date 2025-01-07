@@ -16,6 +16,8 @@ app.use(
   })
 );
 
+app.use(express.static("public", { extensions: ["html", "js", "ts"] }));
+
 // root
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is ready");
