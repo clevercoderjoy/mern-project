@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { SubmitHandler, useForm } from "react-hook-form";
 import { locationStateType, productType } from '../types/Types';
-import axios from 'axios';
+import api from '../api';
 
 const ProductForm: FC = () => {
 
@@ -19,10 +19,10 @@ const ProductForm: FC = () => {
 
   const onsubmit: SubmitHandler<productType> = async (data) => {
     if (currentProduct) {
-      await axios.put(`/api/products/${currentProduct._id}`, data);
+      await api.put(`/api/products/${currentProduct._id}`, data);
     }
     else {
-      await axios.post(`/api/products/addProduct`, data);
+      await api.post(`/api/products/addProduct`, data);
     }
     navigate(-1);
     reset();

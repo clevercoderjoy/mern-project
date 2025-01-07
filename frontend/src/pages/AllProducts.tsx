@@ -1,50 +1,30 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import { pageTypes, productType } from "../types/Types"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
-import axios from "axios";
+import UseProducts from "../hooks/UseProducts";
 
 const AllProducts: FC<pageTypes> = ({ title }) => {
-  const navigate = useNavigate();
 
-  const [productList, setProductList] = useState<productType[]>([]);
+  const { productList, loading, error, deleteProduct, updateProduct } = UseProducts();
+  const headingClass = "m-auto text-center mt-12 font-bold text-white text-2xl";
 
-  const fetchAllProducts = async () => {
-    const allProducts = await axios.get<{ data: productType[] }>("/api/products");
-    setProductList(allProducts?.data?.data);
-  }
-
-  const deleteProduct = async (productId: string) => {
-    axios.delete(`/api/products/${productId}`);
-  }
-
-  const updateProduct = async (productId: string) => {
-    const productToEdit = productList.find((product: productType) => product._id === productId);
-    navigate("/products/addOrUpdateProduct", {
-      state: {
-        title: "Update",
-        currentProduct: productToEdit
-      }
-    });
-  }
-
-  useEffect(() => {
-    fetchAllProducts();
-  }, [productList])
+  if (loading) return <div className={headingClass}>Loading products...</div>;
+  if (error) return <div className={headingClass}>{error}</div>;
 
   return (
-    <div className="m-auto text-center mt-12 font-bold text-white text-2xl">
+    <div className={headingClass}>
       <h2>{title}</h2>
       <div className="product mt-8">
         <ul className="flex gap-8 flex-wrap items-center justify-center">
           {
             productList.map((product: productType) => <li key={product._id} className="h-[275px] w-[275px] border-2 border-white rounded">
               <span>
-                <img src={product.image} alt={product.name} className="h-[200px] w-full m-auto rounded object-cover" />
+                <img src={product.image} alt={product.name} className="h-[200px] w-full m-auto object-cover" />
                 <span className="flex justify-between items-center px-2 text-left">
                   <span>
-                    <Link to={`/products/${product._id}`} className="text-sm text-left">{product.name}</Link>
+                    <Link to={`/products/${product._id}`} state={{ productList }} className="text-sm text-left">{product.name}</Link>
                   </span>
                   <span className="text-sm">${product.price}</span>
                 </span>
