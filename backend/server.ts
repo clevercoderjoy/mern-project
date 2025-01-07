@@ -7,13 +7,6 @@ import cors from "cors";
 dotenv.config({ path: "./.env" });
 const app = express();
 
-app.use((req: Request, res: Response, next) => {
-  if (req.url === "/.well-known/health") {
-    return res.redirect("/");
-  }
-  next();
-});
-
 app.use(express.json());
 app.use(
   cors({
@@ -30,12 +23,8 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/products", productRoutes);
 
-const PORT = process.env.PORT || 5000;
-
 // server
-app.listen(PORT, () => {
+app.listen(5000, () => {
   connectDB();
-  console.log(`Server environment: ${process.env.NODE_ENV}`);
-  console.log(`CORS enabled for origin: ${process.env.FRONTEND_URL || "*"}`);
   console.log("server started at https://mern-project-asso.onrender.com");
 });
